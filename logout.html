@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Out | GC Middle East Games</title>
+    <link rel="stylesheet" href="GC_game.styles.css">
+</head>
+<body style="background-color: #2f2634;">
+    
+    <div id="purple_bar">
+        <img src="GC Logo white back.jpg" style="width: 50px; float: right;">
+        <h1 style="color: white;"> GC MIDDLE EAST </h1>
+        <input type="text" id="search" placeholder="Search for people"><br>
+        <img src="ADMIN Anna Claire 1.jpg" style="width: 50px; float: right;">
+        <span style="font-size:11px;float:right;margin:10px;color:white;"> Logout</span>
+    </div>
+    <br>
+    <script>
+        localStorage.removeItem('token');
+        window.location.href = 'Signin.html';
+    </script>
+</body>
+</html>

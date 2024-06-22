@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GC Middle East Games</title>
+    <link rel="stylesheet" href="game.styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+</head>
+
+<body style="background-color: #2f2634;">
+    
+    <div id="purple_bar">
+        <img src="GC Logo white back.jpg" style="width: 50px; float: right;">
+        <h1 style="color: white;"> GC MIDDLE EAST </h1>
+        <input type="text" id="search" placeholder="Search for people"><br>
+        <img src="ADMIN Anna Claire 1.jpg" style="width: 50px; float: right;">
+        <span style="font-size:11px;float:right;margin:10px;color:white;"> Logout</span>
+    </div>
+    <br>
+
+    <div class="container">
+        <form>
+            <label for="drawTime">Anong time of draw ka tataya?</label>
+            <select id="drawTime" name="drawTime" required>
+                <option value="">Select Draw Time</option>
+                <option value="2PM">2PM DRAW</option>
+                <option value="5PM">5PM DRAW</option>
+                <option value="9PM">9PM DRAW</option>
+            </select>
+
+            <label for="currencySelect">Anong Currency ang gagamitin mong pantaya?</label>
+            <select id="currencySelect" name="currency" required>
+                <option value="">Select Currency</option>
+                <option value="PESO">PESO</option>
+                <option value="AED">AED</option>
+                <option value="SAR">SAR</option>
+            </select>
+
+            <label for="transactionID" style="color: brown;">Transaction ID:</label>
+            <input type="text" id="transactionID" name="transactionID" readonly>
+        </form>
+    </div>
+
+    <!-- Swiper Container -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <!-- 2D Draw Form -->
+            <div class="swiper-slide game">
+                <h2>2D Draw</h2>
+                <p>Enter 2D Numbers (01-31): | Bet type & Amount |</p>
+                <div class="numbers">
+                    <input type="number" id="num1" min="1" max="31" oninput="checkInput(this, 2)">
+                    <input type="number" id="num2" min="1" max="31" oninput="checkInput(this, 2)">
+                    <select class="bet-type" id="2d-bet-type" name="style" onchange="checkInput(this, 2)">
+                        <option value="Straight">S</option>
+                        <option value="Ramble" selected>R</option>
+                        <option value="Pompyang">P</option>
+                    </select>
+                    <input type="number" id="amountInput" name="amount" min="10" max="1000" step="10" placeholder="Amount" required>
+                    <button class="addbutton" type="addbutton" id="addbutton">ADD 2D</button>
+                </div>
+            </div>
+
+            <!-- 3D Draw Form -->
+            <div class="swiper-slide game">
+                <h2>3D Draw</h2>
+                <p>Enter 3D Numbers (1-9): | Bet type & Amount |</p>
+                <div class="numbers">
+                    <input type="number" id="gc1-num1" min="1" max="9" oninput="checkInput(this, 1)">
+                    <input type="number" id="gc1-num2" min="1" max="9" oninput="checkInput(this, 1)">
+                    <input type="number" id="gc1-num3" min="1" max="9" oninput="checkInput(this, 1)">
+                    <select class="bet-type" id="3d-bet-type" name="style" onchange="checkInput(this, 1)">
+                        <option value="Straight">S</option>
+                        <option value="Ramble" selected>R</option>
+                        <option value="Double-Ramble">RR</option>
+                        <option value="Pompyang">P</option>
+                    </select>
+                    <input type="number" id="amountInput" name="amount" min="10" max="1000" step="10" placeholder="Amount" required>
+                    <button class="addbutton" type="addbutton" id="addbutton">ADD 3D</button>
+                </div>
+            </div>
+
+            <!-- Last Two Draw Form -->
+            <div class="swiper-slide game">
+                <h2>Last Two Draw</h2>
+                <p>Enter Last Two Numbers (1-9): | Bet type & Amount |</p>
+                <div class="numbers">
+                    <input type="number" id="lasto-num1" min="1" max="9" oninput="checkInput(this, 1)">
+                    <input type="number" id="lasto-num2" min="1" max="9" oninput="checkInput(this, 1)">
+                    <select class="bet-type" id="lasttwo-bet-type" name="style" onchange="checkInput(this, 1)">
+                        <option value="Straight">S</option>
+                        <option value="Ramble" selected>R</option>
+                        <option value="Pompyang">P</option>
+                    </select>
+                    <input type="number" id="amountInput" name="amount" min="10" max="1000" step="10" placeholder="Amount" required>
+                    <button class="addbutton" type="addbutton" id="addbutton">ADD LASTO</button>
+                </div>
+            </div>
+
+            <!-- PICK 3 Draw Form -->
+            <div class="swiper-slide game">
+                <h2>PICK 3 Draw</h2>
+                <p>Enter PICK 3 Numbers (01-55):</p>
+                <div class="numbers">
+                    <input type="number" id="pick3-num1" min="1" max="55" oninput="checkInput(this, 2)">
+                    <input type="number" id="pick3-num2" min="1" max="55" oninput="checkInput(this, 2)">
+                    <input type="number" id="pick3-num3" min="1" max="55" oninput="checkInput(this, 2)">
+                    <input type="number" id="amountInput" name="amount" min="10" max="1000" step="10" placeholder="Amount" required>
+                    <button class="addbutton" type="addbutton" id="addbutton"> ADD PICK3</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Swiper Pagination and Navigation -->
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <br>
+        <div><button id="submitBtn" class="submitbtn" type="button" onclick="validateFormAndSubmit()">Submit</button></div>
+    </div>
+   
+    <script src="GC1_game.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper-container', {
+            slidesPerView: 'auto',
+            spaceBetween: 20,
+            centeredSlides: true,
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
+</body>
+
+</html>
